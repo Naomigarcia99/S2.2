@@ -94,7 +94,13 @@ function buy(id) {
 console.log(buy(2));
 
 // Exercise 2
-function cleanCart() {}
+function cleanCart() {
+  cart = [];
+
+  return cart;
+}
+
+console.log(cleanCart());
 
 // Exercise 3
 function calculateTotal() {
