@@ -84,10 +84,9 @@ function buy(id) {
   if (productoExiste) {
     productoExiste.cantidad++;
   } else {
-    cart.push({ product: producto, cantidad: 1 });
+    cart.push({ producto: producto, cantidad: 1 });
   }
 
-  total++;
   return cart;
 }
 
@@ -100,12 +99,18 @@ function cleanCart() {
   return cart;
 }
 
-console.log(cleanCart());
+//console.log(cleanCart());
 
 // Exercise 3
 function calculateTotal() {
   // Calculate total price of the cart using the "cartList" array
+  for (i = 0; i < cart.length; i++) {
+    total += cart[i].price;
+    return total;
+  }
 }
+
+console.log(calculateTotal());
 
 // Exercise 4
 function applyPromotionsCart() {
