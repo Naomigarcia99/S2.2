@@ -84,13 +84,13 @@ function buy(id) {
   if (productoExiste) {
     productoExiste.cantidad++;
   } else {
-    cart.push({ producto: producto, cantidad: 1 });
+    cart.push({ ...producto, cantidad: 1 });
   }
 
   return cart;
 }
 
-console.log(buy(2));
+console.log(buy(3));
 
 // Exercise 2
 function cleanCart() {
@@ -104,8 +104,9 @@ function cleanCart() {
 // Exercise 3
 function calculateTotal() {
   // Calculate total price of the cart using the "cartList" array
-  for (i = 0; i < cart.length; i++) {
-    total += cart[i].price;
+  let total = 0;
+  for (let i = 0; i < cart.length; i++) {
+    total += cart[i].price * cart[i].cantidad;
     return total;
   }
 }
@@ -115,7 +116,29 @@ console.log(calculateTotal());
 // Exercise 4
 function applyPromotionsCart() {
   // Apply promotions to each item in the array "cart"
+  let subtotalWithDiscount = 0;
+
+  let oli = cart.find((e) => e.id === 1);
+  let pasteles = cart.find((e) => e.id === 3);
+
+  if (oli && oli.cantidad >= 3) {
+    let precioOli = oli.price * 0.8;
+    oli.price = precioOli;
+  }
+
+  if (pasteles && pasteles.cantidad >= 10) {
+    let precioPasteles = pasteles.price * 0.7;
+    pasteles.price = precioPasteles;
+  }
+
+  for (let i = 0; i < cart.length; i++) {
+    subtotalWithDiscount += cart[i].price * cart[i].cantidad;
+  }
+
+  return subtotalWithDiscount;
 }
+
+console.log(applyPromotionsCart());
 
 // Exercise 5
 function printCart() {
