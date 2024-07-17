@@ -107,8 +107,8 @@ function calculateTotal() {
   let total = 0;
   for (let i = 0; i < cart.length; i++) {
     total += cart[i].price * cart[i].cantidad;
-    return total;
   }
+  return total.toFixed(2);
 }
 
 console.log(calculateTotal());
@@ -143,6 +143,23 @@ console.log(applyPromotionsCart());
 // Exercise 5
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
+  let cartList = document.getElementById("cart_list");
+  let totalPrice = document.getElementById("total_price");
+  cartList.innerHTML = "";
+
+  cart.forEach(
+    (e) =>
+      (cartList.innerHTML += `
+    <tr>
+      <th scope = "row">${e.name}</th>
+      <td>$${e.price}</td>
+      <td>${e.cantidad}</td>
+      <td>$${(e.price * e.cantidad).toFixed(2)}</td>
+    </tr>
+    `)
+  );
+
+  totalPrice.innerHTML = calculateTotal();
 }
 
 // ** Nivell II **
