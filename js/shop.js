@@ -147,12 +147,14 @@ function printCart() {
   let totalPrice = document.getElementById("total_price");
   cartList.innerHTML = "";
 
+  applyPromotionsCart();
+
   cart.forEach(
     (e) =>
       (cartList.innerHTML += `
     <tr>
       <th scope = "row">${e.name}</th>
-      <td>$${e.price}</td>
+      <td>$${e.price.toFixed(2)}</td>
       <td>${e.cantidad}</td>
       <td>$${(e.price * e.cantidad).toFixed(2)}</td>
     </tr>
