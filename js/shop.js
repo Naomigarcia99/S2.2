@@ -95,6 +95,7 @@ console.log(buy(3));
 // Exercise 2
 function cleanCart() {
   cart = [];
+  printCart();
 
   return cart;
 }
