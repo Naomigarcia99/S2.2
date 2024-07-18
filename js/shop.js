@@ -158,6 +158,7 @@ function printCart() {
       <td>$${e.price.toFixed(2)}</td>
       <td>${e.cantidad}</td>
       <td>$${(e.price * e.cantidad).toFixed(2)}</td>
+      <td><button onclick="removeFromCart(${e.id})">Eliminar</button></td>
     </tr>
     `)
   );
@@ -168,7 +169,19 @@ function printCart() {
 // ** Nivell II **
 
 // Exercise 7
-function removeFromCart(id) {}
+function removeFromCart(id) {
+  let indexProducto = cart.findIndex((e) => e.id === id);
+
+  if (indexProducto !== -1) {
+    if (cart[indexProducto].cantidad > 1) {
+      cart[indexProducto].cantidad--;
+    } else {
+      cart.splice(indexProducto, 1);
+    }
+  }
+
+  printCart();
+}
 
 function open_modal() {
   printCart();
