@@ -74,18 +74,24 @@ var cart = [];
 
 var total = 0;
 
+let contador = 0;
+
 // Exercise 1
 function buy(id) {
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cart array
   let producto = products.find((e) => e.id === id);
   let productoExiste = cart.find((e) => e.id === id);
+  let contadorCarrito = document.getElementById("count_product");
 
   if (productoExiste) {
     productoExiste.cantidad++;
   } else {
     cart.push({ ...producto, cantidad: 1 });
   }
+
+  contador++;
+  contadorCarrito.innerHTML = `${contador}`;
 
   return cart;
 }
@@ -158,7 +164,9 @@ function printCart() {
       <td>$${e.price.toFixed(2)}</td>
       <td>${e.cantidad}</td>
       <td>$${(e.price * e.cantidad).toFixed(2)}</td>
-      <td><button onclick="removeFromCart(${e.id})">Eliminar</button></td>
+      <td><button class="btn btn-outline-success" onclick="removeFromCart(${
+        e.id
+      })">Eliminar</button></td>
     </tr>
     `)
   );
